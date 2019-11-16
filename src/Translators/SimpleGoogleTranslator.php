@@ -50,8 +50,11 @@ class SimpleGoogleTranslator implements TranslatorInterface
             if ($th->getMessage() === 'Return value of Stichoza\GoogleTranslate\GoogleTranslate::translate() must be of the type string, null returned') {
                 throw LanguageCodeNotExist::throw($this->source, $this->target);
             }
-
-            throw $th;
+            if ($th->getMessage() === 'Return value of Stichoza\GoogleTranslate\GoogleTranslate::translate() must be of the type string, null returned') {
+                throw LanguageCodeNotExist::throw($this->source, $this->target);
+            }
+	        echo "\n Skipping Word: " . $string;
+	        return $string . "[TO BE TRANSLATED]";
         }
     }
 }
